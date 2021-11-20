@@ -7,7 +7,14 @@ html {
   font-size: 13px;
   @apply text-gray-900;
 }
+@font-face {
+  font-family: 'Segoe UI';
+  src: local('SegoeUI'), url(./fonts/SegoeUI.ttf) format('woff');
+}
 
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 @media screen and (min-width: 640px) {
   html {
     font-size: 14px;
@@ -34,7 +41,44 @@ html {
 .title {
   @apply text-4xl leading-snug font-semibold;
 }
+a {
+  text-decoration: none !important;
+}
+h1 {
+  font-size: 18px;
+}
 
+#category {
+  font-weight: 500 !important;
+}
+
+#title {
+  letter-spacing: 0.4px !important;
+  font-size: 22px !important;
+  font-size: 1.375rem !important;
+  line-height: 1.13636 !important;
+}
+
+#banner {
+  margin: 20px !important;
+  height: 800px !important;
+}
+
+#editor {
+  font-size: 16px !important;
+  font-size: 1rem !important;
+  line-height: 1.75 !important;
+}
+
+.uk-navbar-container {
+  background: #fff !important;
+  font-family: Staatliches !important;
+}
+
+img:hover {
+  opacity: 1 !important;
+  transition: opacity 0.25s cubic-bezier(0.39, 0.575, 0.565, 1) !important;
+}
 @media (min-width: 768px) {
   .title {
     @apply text-5xl;
@@ -48,4 +92,232 @@ html {
   height: 13px;
   display: inline-block;
   margin-left: 0.5em;
+}
+.banner {
+    background-position: center;
+    height: 579px;
+    align-items: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: #000;
+    text-align: center;
+    justify-content: center;
+}
+.banner h1 {
+    display: block;
+    font-size: 56px;
+    font-weight: 700;
+    color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    letter-spacing: 2px;
+    margin: auto;
+    margin-top: 20px;
+}
+.banner h2 {
+    font-size: 56px;
+    display: inline-block;
+    font-weight: 700;
+    padding: 2px;
+    text-transform: capitalize;
+    background-color: #006340;
+    color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    letter-spacing: 2px;
+    margin: auto;
+    margin-bottom: 20px;
+}
+.searchbox {
+    color: #0f0f0f;
+    padding-left: 60px;
+    font-size: 14px;
+    height: 56px;
+    font-weight: 300;
+    border: none;
+    background-color: white;
+    border-radius: 2px;
+    box-shadow: none;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    line-height: 1.42857143;
+    outline-offset: -2px;
+    width: 100%;
+}
+.pa2 {
+  width: 640px;
+  margin: auto;
+  position: relative;
+}
+.garamond {
+    margin: auto;
+    max-width: 980px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+@media (max-width: 768px) {
+  .pa2 {
+    width: 80%;
+    margin: auto;
+    position: relative;
+  }
+  .garamond {
+      margin: auto;
+      max-width: 90%;
+      padding-left: 15px;
+      padding-right: 15px;
+  }
+}
+.garamond svg {
+  width: 1.125rem;
+    height: 1.125rem;
+    display: inline-block;
+    line-height: 1em;
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    color: black;
+    vertical-align: middle;
+    position: absolute;
+    top: 21px;
+    left: 20px;
+}
+nav li {
+  position: relative;
+  margin: 0px;
+  white-space: nowrap;
+  font-weight: 500;
+  text-transform: capitalize;
+  list-style: none;
+}
+nav.navbar li a {
+  padding: 8px;
+  color: #fff;
+  font-size: 20px;
+}
+nav.navbar li a:hover {
+  color: #fff;
+}
+.off_home nav.navbar li a {
+  color: #242424;
+}
+.off_home nav.navbar li a:hover {
+  color: #242424;
+}
+.off_home nav.navbar .navlink div {
+  color: #242424;
+  border-color: #242424;
+}
+.off_home .garamond {
+  width: 90%;
+  padding-right: 2rem;
+  border-color: #E2E8F0;
+  word-wrap: break-word;
+  max-width: none;
+}
+.off_home .pa2 {
+  position: relative;
+  width: auto;
+}
+.off_home nav.navbar .searchbox {
+  border-radius: 3px;
+    background-color: #fafafa;
+    padding-right: 1rem;
+    height: 55px;
+    text-overflow: ellipsis;
+    color: #0F0F0F;
+    padding-left: 45px;
+    border: 1px solid #A1A5A4;
+}
+
+.uk-link-reset {
+  color: #006340;
+  font-size: 1.2rem;
+}
+.uk-link-reset svg{
+width: 1em;
+height: 1em;
+display: inline-block;
+line-height: 1em;
+flex-shrink: 0;
+color: currentColor;
+vertical-align: middle;
+}
+.brand_card {
+  padding: 0 8px;
+}
+.product_card, .article_card{
+  border: 1px solid #ededed;
+  margin: auto 8px;
+}
+h2.section-title{
+  font-weight: 700;
+  font-size: 1.8rem;
+  line-height: 1.4;
+  min-height: 0vw;
+  padding: 8px;
+}
+.product_card .uk-card-media-top-img, .article_card .uk-card-media-top-img{
+  width: 140px;
+  height: 75px;
+  max-width: 100%;
+  margin: 0px auto; 
+}
+.product_card .uk-card-media-top, .article_card .uk-card-media-top{
+  margin: 16px;
+}
+.product_card .uk-card-body, .article_card  .uk-card-body{
+  background-color: #fafafa;
+  padding: 1rem;
+  text-align: left;
+}
+.product_card .uk-text-large {
+  font-size: 1rem;
+  height: 4rem;
+  color: #0f0f0f;
+  font-weight: 500;
+  line-height: 1.3;
+}
+.article_card .uk-text-large  {
+  font-size: 1.3rem;
+  height: 4rem;
+  color: #0f0f0f;
+  font-weight: 500;
+  line-height: 1.3;
+}
+.product_card .price-line-div .ask, .product_card .sold {
+  letter-spacing: 0.004rem;
+  color: #5F5F5F;
+  text-transform: capitalize;
+  font-size: 0.85rem;
+  overflow: hidden;
+  margin-top: 0.25rem;
+  line-height: 1.3;
+}
+.article_card .date {
+  line-height: 1.42;
+  letter-spacing: 0.004rem;
+  font-size: 1rem;
+  color: #A1A5A4;
+  font-weight: 400;
+}
+.product_card .price-line-div .price {
+  letter-spacing: 0.004rem;
+  color: #0f0f0f;
+  font-size: 1.45rem;
+  line-height: 1.3;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+@media (max-width: 768px) {
+  .off_home .garamond {
+    width: 100%;
+    padding: unset;
+  }
+  .searchbox {
+    width: auto;
+  }
+  .gatsby-image-wrapper.gatsby-image-wrapper-constrained.h-8.w-auto.object-contain {
+    height: 119px;
+  }
 }

@@ -1,7 +1,6 @@
 import React from "react"
 
 import Layout from "../components/layout"
-import SEO from "../components/seo"
 import { graphql } from "gatsby"
 
 const NotFoundPage = ({ data }) => {
@@ -15,8 +14,6 @@ const NotFoundPage = ({ data }) => {
   } = data
 
   return (
-    <>
-      <SEO seo={{ title: "404: Not found" }} global={strapiGlobal} />
       <Layout
         pageContext={{
           locale: defaultLocale,
@@ -24,12 +21,12 @@ const NotFoundPage = ({ data }) => {
           defaultLocale,
           slug: "404",
         }}
+        seo={{ title: "404: Not found" }}
         global={strapiGlobal}
       >
         <h1>404: Not Found</h1>
         <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
       </Layout>
-    </>
   )
 }
 

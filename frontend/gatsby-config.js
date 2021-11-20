@@ -8,7 +8,7 @@ module.exports = {
   },
   siteMetadata: {
     title: `Strapi+Gatsby Corporate Starter`,
-    siteUrl: `${process.env.GATSBY_STRAPI_URL || "http://localhost:1337"}`,
+    siteUrl: "https://kickxsquare.herokuapp.com",
     description: `A Strapi+Gatsby corporate starter`,
     author: `Strapi`,
     languages: { defaultLocale: "en", locales: ["en", "fr"] },
@@ -42,33 +42,37 @@ module.exports = {
     {
       resolve: "gatsby-source-strapi",
       options: {
-        apiURL: process.env.GATSBY_STRAPI_URL || "http://localhost:1337",
+        apiURL:
+          process.env.GATSBY_STRAPI_URL || "https://kickxsquare.herokuapp.com",
         collectionTypes: [
           {
-            name: 'page',
+            name: "page",
             api: {
               qs: {
-                _publicationState: 'preview',
-                _locale: 'all'
-              }
+                _publicationState: "preview",
+                _locale: "all",
+              },
             },
           },
+          "article",
+          "category",
+          "writer",
         ],
         singleTypes: [
           {
-            name: 'global',
+            name: "global",
             api: {
               qs: {
-                _locale: 'en'
-              }
+                _locale: "en",
+              },
             },
           },
           {
-            name: 'global',
+            name: "global",
             api: {
               qs: {
-                _locale: 'fr'
-              }
+                _locale: "fr",
+              },
             },
           },
         ],

@@ -1,20 +1,24 @@
-import React from "react"
+import React, { useState } from "react"
 import { graphql } from "gatsby"
 import Layout from "@/components/layout"
 import Sections from "@/components/sections"
-import SEO from "@/components/seo"
-
+import ArticlesComponent from "../components/articles"
+import SneakersPage from "../templates/sneakersPage"
 const DynamicPage = ({ data, pageContext }) => {
   const { contentSections, metadata, localizations } = data.strapiPage
-  const global = data.strapiGlobal
-
+  const [blogSlug] = useState(data?.strapiPage?.slug === "news")
+  const [sneakersSlug] = useState(data?.strapiPage?.slug === "sneakers")
+  const blog = data.allStrapiArticle
   return (
-    <>
-      <SEO seo={metadata} global={global} />
-      <Layout global={global} pageContext={{ ...pageContext, localizations }}>
-        <Sections sections={contentSections} />
-      </Layout>
-    </>
+    <Layout pageContext={{ ...pageContext, localizations }} seo={metadata}>
+      <Sections
+        sections={contentSections}
+        products={pageContext?.products}
+        articles={blog?.edges}
+      />
+      {blogSlug && <ArticlesComponent articles={blog?.edges} />}
+      {sneakersSlug && <SneakersPage sneakers={pageContext.listSneakers} />}
+    </Layout>
   )
 }
 
@@ -44,10 +48,7 @@ export const query = graphql`
         alternativeText
         localFile {
           childImageSharp {
-            gatsbyImageData(
-              placeholder: BLURRED
-              formats: [AUTO, WEBP, AVIF]
-            )
+            gatsbyImageData(placeholder: BLURRED, formats: [AUTO, WEBP, AVIF])
           }
         }
       }
@@ -82,10 +83,7 @@ export const query = graphql`
       logo {
         localFile {
           childImageSharp {
-            gatsbyImageData(
-              placeholder: BLURRED
-              formats: [AUTO, WEBP, AVIF]
-            )
+            gatsbyImageData(placeholder: BLURRED, formats: [AUTO, WEBP, AVIF])
           }
         }
       }
@@ -95,8 +93,16 @@ export const query = graphql`
       text
       type
     }
+    banner {
+      Title
+      Subtitle
+      Image {
+        localFile {
+          publicURL
+        }
+      }
+    }
   }
-
   query DynamicPageQuery($id: String!, $locale: String!) {
     strapiGlobal(locale: { eq: $locale }) {
       ...GlobalData
@@ -113,11 +119,37 @@ export const query = graphql`
           }
         }
       }
-      localizations {
-        id
-        locale
-      }
       contentSections
+    }
+    allStrapiArticle {
+      edges {
+        node {
+          strapiId
+          slug
+          title
+          published_at
+          category {
+            name
+          }
+          image {
+            localFile {
+              childImageSharp {
+                gatsbyImageData(width: 800, height: 500)
+              }
+            }
+          }
+          author {
+            name
+            picture {
+              localFile {
+                childImageSharp {
+                  gatsbyImageData(width: 30, height: 30)
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 `

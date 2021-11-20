@@ -2,7 +2,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import { Helmet } from "react-helmet"
 
-const SEO = ({ seo, global }) => {
+const Seo = ({ seo, global }) => {
   // Merge default and page-specific SEO values
   const fullSeo = {
     favicon: global.favicon,
@@ -44,7 +44,7 @@ const SEO = ({ seo, global }) => {
     if (fullSeo.shareImage) {
       const imageUrl = process.env.GATSBY_STRAPI_URL
         ? fullSeo.shareImage.publicURL
-        : `http://localhost:8000${fullSeo.shareImage.publicURL}`
+        : `http://localhost:8001${fullSeo.shareImage.publicURL}`
 
       tags.push(
         {
@@ -82,21 +82,23 @@ const SEO = ({ seo, global }) => {
       link={[
         {
           rel: "icon",
-          href: fullSeo.favicon.localFile.publicURL,
+          href: fullSeo?.shareImage?.localFile?.publicURL ? fullSeo?.shareImage?.localFile?.publicURL : fullSeo?.favicon?.localFile?.publicURL,
         },
       ]}
     />
   )
 }
 
-SEO.propTypes = {
+Seo.propTypes = {
   title: PropTypes.string,
   image: PropTypes.string,
 }
 
-SEO.defaultProps = {
+Seo.defaultProps = {
   title: null,
   image: null,
 }
 
-export default SEO
+
+
+export default Seo

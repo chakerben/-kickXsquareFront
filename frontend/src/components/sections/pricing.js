@@ -1,13 +1,13 @@
 import React from "react"
-import { MdCheckBox } from "react-icons/md";
-import classNames from "classnames";
+import { MdCheckBox } from "react-icons/md"
+import classNames from "classnames"
 
 const Pricing = ({ data }) => {
   return (
     <div className="container py-12">
       <h1 className="text-4xl text-center">{data.title}</h1>
       <div className="flex flex-col lg:flex-row gap-4 lg:justify-center mt-6">
-        {data.plans.map((plan) => (
+        {data.plans.map(plan => (
           <div
             className={classNames(
               // Common classes
@@ -38,7 +38,7 @@ const Pricing = ({ data }) => {
               <span className="text-base font-medium">{plan.pricePeriod}</span>
             </p>
             <ul className="mt-4 flex flex-col gap-3">
-              {plan.features.map((feature) => (
+              {plan.features.map(feature => (
                 <li
                   className="flex flex-row justify-between items-center"
                   key={feature.id}
@@ -52,7 +52,7 @@ const Pricing = ({ data }) => {
         ))}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Pricing;
+export default Pricing

@@ -1,6 +1,6 @@
 /**
  * You can preview pages with URLs like this:
- * http://localhost:8000/preview/<slug>?secret=<preview-secret>
+ * http://localhost:8001/preview/<slug>?secret=<preview-secret>
  * where <preview-secret> is the GATSBY_PREVIEW_SECRET variable defined in your .env config
  * and <slug> is the slug you entered in Strapi for your page
  */
@@ -12,7 +12,6 @@ import { getLocalizedPaths } from "@/utils/localize"
 
 import Sections from "@/components/sections"
 import Layout from "@/components/layout"
-import SEO from "@/components/seo"
 
 import { useLocation } from "@reach/router"
 import { useCookies } from "react-cookie"
@@ -89,16 +88,13 @@ const PreviewPage = ({ locale, slug, data }) => {
   }
 
   return (
-    <>
-      <SEO seo={metaData} locale={pageContext.locale} global={strapiGlobal} />
-      <Layout pageContext={pageContext} global={strapiGlobal}>
+      <Layout pageContext={pageContext} global={strapiGlobal} seo={metaData}>
         {secretPage && (
           <div>
             <Sections sections={secretPage.contentSections} />
           </div>
         )}
       </Layout>
-    </>
   )
 }
 

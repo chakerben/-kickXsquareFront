@@ -8,6 +8,8 @@ import TestimonialsGroup from "@/components/sections/testimonials-group"
 import RichText from "./sections/rich-text"
 import Pricing from "./sections/pricing"
 import LeadForm from "./sections/lead-form"
+import ProductsList from "./sections/products-list"
+import LatestBlog from "./sections/latest-blog"
 import { useCookies } from "react-cookie"
 import { navigate } from "gatsby-link"
 import { useLocation } from "@reach/router"
@@ -23,6 +25,8 @@ const sectionComponents = {
   "sections.rich-text": RichText,
   "sections.pricing": Pricing,
   "sections.lead-form": LeadForm,
+  "sections.products-list": ProductsList,
+  "sections.latest-blog": LatestBlog,
 }
 
 const PreviewModeBanner = ({ location }) => {
@@ -45,7 +49,7 @@ const PreviewModeBanner = ({ location }) => {
 }
 
 // Display a section individually
-const Section = ({ sectionData }) => {
+const Section = ({ sectionData, products, articles }) => {
   // Prepare the component
   const SectionComponent = sectionComponents[sectionData.strapi_component || sectionData.__component]
 
@@ -55,11 +59,11 @@ const Section = ({ sectionData }) => {
   }
 
   // Display the section
-  return <SectionComponent data={sectionData} />
+  return <SectionComponent data={sectionData} products= {products} articles= {articles}  />
 }
 
 // Display the list of sections
-const Sections = ({ sections }) => {
+const Sections = ({ sections, products, articles}) => {
   const location = useLocation()
   // Ignore unused destructured variable
   // eslint-disable-next-line
@@ -87,7 +91,9 @@ const Sections = ({ sections }) => {
       {sections.map((section, i) => (
         <Section
           sectionData={section}
-          key={`${section.strapi_component}${(section.id, i)}`}
+          key={`${section.strapi_component}${(section.id, i)}`} 
+          products= {products} 
+          articles= {articles}
         />
       ))}
     </div>

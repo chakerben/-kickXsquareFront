@@ -1,5 +1,4 @@
-import React from "react"
-import { useState } from "react"
+import React, { useState } from "react"
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import { MdMenu } from "react-icons/md"
@@ -18,12 +17,11 @@ import { localizePath } from "@/utils/localize"
 
 const Navbar = ({ navbar, pageContext }) => {
   const [mobileMenuIsShown, setMobileMenuIsShown] = useState(false)
-
   return (
     <>
       {/* The actual navbar */}
-      <nav className="border-gray-200 border-b-2 py-6 sm:py-2">
-        <div className="container flex flex-row items-center justify-between">
+      <nav className=" py-6 sm:py-2 navbar">
+        <div className="px-8 flex flex-row items-center justify-between">
           {/* Content aligned to the left */}
           <div className="flex flex-row items-center">
             <Link
@@ -31,12 +29,15 @@ const Navbar = ({ navbar, pageContext }) => {
             >
               <Image
                 placeholder="none"
-                style={{ width: "112px" }}
+                style={{ width: "150px" }}
                 media={navbar.logo}
-                className="h-8 w-auto object-contain"
+                className="h-24 w-auto object-contain"
               />
             </Link>
-            {/* List of links on desktop */}
+          </div>
+          {/* List of links on desktop */}
+
+          <div className="flex items-center">
             <ul className="hidden list-none md:flex flex-row gap-4 items-baseline ml-10">
               {navbar.links.map(navLink => (
                 <li key={navLink.id}>
@@ -51,17 +52,13 @@ const Navbar = ({ navbar, pageContext }) => {
                       })}`,
                     }}
                   >
-                    <div className="hover:text-gray-900 px-2 py-1">
-                      {navLink.text}
-                    </div>
+                    <div className="px-2 py-1">{navLink.text}</div>
                   </CustomLink>
                 </li>
               ))}
             </ul>
-          </div>
-          <div className="flex items-center">
             {/* Locale Switch Mobile */}
-            {pageContext.localizations && (
+            {pageContext?.localizations && (
               <div className="md:hidden">
                 <LocaleSwitch pageContext={pageContext} />
               </div>
@@ -75,17 +72,20 @@ const Navbar = ({ navbar, pageContext }) => {
             </button>
 
             {/* CTA button on desktop */}
-            {navbar.button && (
-              <div className="hidden md:block">
+            {navbar?.button && (
+              <div className="hidden md:block ml-4">
                 <ButtonLink
-                  button={navbar.button}
-                  appearance={getButtonAppearance(navbar.button.type, "light")}
+                  button={navbar?.button}
+                  appearance={getButtonAppearance(
+                    navbar?.button?.type,
+                    "white"
+                  )}
                   compact
                 />
               </div>
             )}
             {/* Locale Switch Desktop */}
-            {pageContext.localizations && (
+            {pageContext?.localizations && (
               <div className="hidden md:block">
                 <LocaleSwitch pageContext={pageContext} />
               </div>

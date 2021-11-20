@@ -11,8 +11,8 @@ const TestimonialsGroup = ({ data }) => {
   return (
     <section className="text-center text-lg bg-gray-200 pt-12 pb-16">
       <h2 className="title mb-4">{data.title}</h2>
-      <p className="text-gray-700 mb-4">{data.description}</p>
-      <CustomLink link={data.link}>
+      <p className="text-gray-700 mb-4">{data?.description}</p>
+      <CustomLink link={data?.link}>
         <span className="with-arrow text-blue-700 hover:underline">
           {data.link.text}
         </span>
@@ -48,7 +48,7 @@ const TestimonialsGroup = ({ data }) => {
               id: 0,
             }}
           >
-            <span className="uppercase tracking-wide text-blue-700 hover:underline  with-arrow sm:self-end mt-6 sm:mt-0">
+            <span className="uppercase tracking-wide text-blue-500 hover:underline  with-arrow sm:self-end mt-6 sm:mt-0">
               Read story
             </span>
           </CustomLink>

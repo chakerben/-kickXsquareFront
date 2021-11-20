@@ -6,27 +6,27 @@ import CustomLink from "./custom-link"
 
 const Footer = ({ footer }) => {
   return (
-    <footer className="pt-12 bg-gray-100">
-      <div className="container flex flex-col lg:flex-row lg:justify-between">
-        <div>
+    <footer className="pt-12 bg-gray-900">
+      <div className="container">
+        {/*<div>
           {footer.logo && (
             <Image style={{ width: "112px"}} media={footer.logo} className="h-8 w-auto object-contain" />
           )}
-        </div>
-        <nav className="flex flex-wrap flex-row lg:gap-20 items-start lg:justify-end mb-10">
+          </div>*/}
+        <nav className="flex flex-wrap flex-row lg:gap-20 items-start lg:justify-between mb-10">
           {footer.columns.map(footerColumn => (
             <div
               key={footerColumn.id}
               className="mt-10 lg:mt-0 w-6/12 lg:w-auto"
             >
-              <p className="uppercase tracking-wide font-semibold">
+              <p className="uppercase tracking-wide font-semibold text-white">
                 {footerColumn.title}
               </p>
               <ul className="mt-2">
-                {footerColumn.links.map(link => (
+                {footerColumn?.links?.map(link => (
                   <li
-                    key={link.id}
-                    className="text-gray-700 py-1 px-1 -mx-1 hover:text-gray-900"
+                    key={link?.id}
+                    className="text-gray-500 py-1 px-1 -mx-1 hover:text-green-700"
                   >
                     <CustomLink link={link}>{link.text}</CustomLink>
                   </li>
@@ -36,7 +36,7 @@ const Footer = ({ footer }) => {
           ))}
         </nav>
       </div>
-      <div className="text-sm bg-gray-200 py-6 text-gray-700">
+      <div className="text-sm bg-gray-900 py-6 text-white border-t-2 border-solid border-white ">
         <div className="container">{footer.smallText}</div>
       </div>
     </footer>
