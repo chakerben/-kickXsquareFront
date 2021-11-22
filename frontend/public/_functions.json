@@ -1,0 +1,18 @@
+[
+    {
+        "functionRoute": ".",
+        "pluginName": "default-site-plugin",
+        "originalAbsoluteFilePath": "/Users/chaker/Documents/Projects/my-site/frontend/src/api/index.js",
+        "originalRelativeFilePath": "index.js",
+        "relativeCompiledFilePath": "index.js",
+        "absoluteCompiledFilePath": "/Users/chaker/Documents/Projects/my-site/frontend/.cache/functions/index.js"
+    },
+    {
+        "functionRoute": "sneaker",
+        "pluginName": "default-site-plugin",
+        "originalAbsoluteFilePath": "/Users/chaker/Documents/Projects/my-site/frontend/src/api/sneaker.js",
+        "originalRelativeFilePath": "sneaker.js",
+        "relativeCompiledFilePath": "sneaker.js",
+        "absoluteCompiledFilePath": "/Users/chaker/Documents/Projects/my-site/frontend/.cache/functions/sneaker.js"
+    }
+]

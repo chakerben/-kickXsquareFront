@@ -1,0 +1,1 @@
+{"redirects":[],"rewrites":[{"fromPath":"/:locale/preview/:slug","toPath":"/en/preview/"},{"fromPath":"/:locale/preview/:slug","toPath":"/fr/preview/"}]}
