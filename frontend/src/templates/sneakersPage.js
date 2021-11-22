@@ -8,8 +8,10 @@ import InfiniteScroll from "react-infinite-scroll-component"
 import SneakerApi from "../api/"
 import _ from "lodash"
 
-const SneakersPage = ({ pageContext, sneakers }) => {
+const SneakersPage = ({ pageContext, sneakers, sizes }) => {
   const items = sneakers ? sneakers : pageContext?.sneakers
+  const listSizes = sizes ? sizes : pageContext?.sizes
+  console.log(sizes)
   const [filtredItems, setFiltredItems] = useState(items)
   const totalItems = items?.length
   const [filtreSize, SetFiltreSize] = useState()
@@ -21,13 +23,14 @@ const SneakersPage = ({ pageContext, sneakers }) => {
     filtredItems?.slice(0, maxItems)
   )
   const getListSizes = () => {
-    items && items?.map((product, i) => {
-      product.size_item = []
-      product?._sneaker_item_of_sneaker_ref?.map(async item => {
-        const size = await SneakerApi.getSize(item?.size_id)
-        product?.size_item?.push(size.us)
+    items &&
+      items?.map((product, i) => {
+        product.size_item = []
+        product?._sneaker_item_of_sneaker_ref?.map(async item => {
+          const size = await SneakerApi.getSize(item?.size_id)
+          product?.size_item?.push(size.us)
+        })
       })
-    })
   }
   useEffect(() => {
     getListSizes()
@@ -160,9 +163,9 @@ const SneakersPage = ({ pageContext, sneakers }) => {
     }
   }
   return (
-    <div className="max-w-sm mx-auto flex p-6 container">
+    <div className="max-w-sm mx-auto flex p-6 container sm-grid sm-grid-cols-1">
       <div className="flex-shrink-0">
-        <ListSizes filtre={updateFiltres} />
+        <ListSizes title="Size" filtre={updateFiltres} sizes={listSizes} />
         <ListPrices filtre={updateFiltres} />
       </div>
       <div className="ml-6 pt-1">
@@ -208,7 +211,7 @@ const SneakersPage = ({ pageContext, sneakers }) => {
               pullDownToRefresh
               pullDownToRefreshThreshold={50}
             >
-              <Box className="grid grid-cols-4 gap-4">
+              <Box className="grid grid-cols-4 gap-4 sm-grid-cols-2">
                 {scrolledItems?.map((product, i) => (
                   <Card product={product} key={`product-${i}`} />
                 ))}
@@ -227,7 +230,7 @@ const SneakersPage = ({ pageContext, sneakers }) => {
                 pullDownToRefresh
                 pullDownToRefreshThreshold={50}
               >
-                <Box className="grid grid-cols-4 gap-4">
+                <Box className="grid grid-cols-4 gap-4 sm-grid-cols-2">
                   {scrolledItems?.map((product, i) => (
                     <Card product={product} key={`product-${i}`} />
                   ))}

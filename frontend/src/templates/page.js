@@ -4,6 +4,7 @@ import Layout from "@/components/layout"
 import Sections from "@/components/sections"
 import ArticlesComponent from "../components/articles"
 import SneakersPage from "../templates/sneakersPage"
+
 const DynamicPage = ({ data, pageContext }) => {
   const { contentSections, metadata, localizations } = data.strapiPage
   const [blogSlug] = useState(data?.strapiPage?.slug === "news")
@@ -17,7 +18,12 @@ const DynamicPage = ({ data, pageContext }) => {
         articles={blog?.edges}
       />
       {blogSlug && <ArticlesComponent articles={blog?.edges} />}
-      {sneakersSlug && <SneakersPage sneakers={pageContext.listSneakers} />}
+      {sneakersSlug && (
+        <SneakersPage
+          sneakers={pageContext.listSneakers}
+          sizes={pageContext.sizes}
+        />
+      )}
     </Layout>
   )
 }

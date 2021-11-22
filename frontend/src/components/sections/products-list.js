@@ -37,7 +37,7 @@ const ProductsList = ({ data, products }) => {
       </Flex>
       {/* product list */}
       {data?.type === POPULAR_BRAND && (
-        <Box className="grid grid-cols-5 gap-4">
+        <Box className="grid grid-cols-5 gap-4 sm-grid-cols-2">
           {products?.brand
             ?.slice(0, data?.numberOfProducts)
             .map((product, i) => (
@@ -46,7 +46,7 @@ const ProductsList = ({ data, products }) => {
         </Box>
       )}
       {data?.type === RECOMMENDED_BY_US && (
-        <Box className="grid grid-cols-6 gap-4">
+        <Box className="grid grid-cols-6 gap-4 sm-grid-cols-2">
           {products?.recomended
             ?.slice(0, data?.numberOfProducts)
             .map((product, i) => (
@@ -55,7 +55,7 @@ const ProductsList = ({ data, products }) => {
         </Box>
       )}
       {data?.type === MOST_POPULAR_SNEAKERS && (
-        <Box className="grid grid-cols-6 gap-4">
+        <Box className="grid grid-cols-6 gap-4 sm-grid-cols-2">
           {products?.popular
             ?.slice(0, data?.numberOfProducts)
             .map((product, i) => (

@@ -1,26 +1,11 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
 import { Button, Box } from "@chakra-ui/react"
-import SneakerApi from "../../api"
 import _ from "lodash"
 
-const ListSizes = ({ filtre }) => {
-  const [sizes, setSizes] = useState()
-
-  const getSizes = async () => {
-    let list = await SneakerApi.getListSize()
-    list.sort(function (a, b) {
-      return a.us - b.us
-    })
-    setSizes(list)
-  }
-  useEffect(async () => {
-    if (_.isNil(sizes)) {
-      await getSizes()
-    }
-  }, [sizes])
+const ListSizes = ({ title, sizes, filtre }) => {
   return (
     <Box>
-      <h2>SIZES</h2>
+      <h2>{title}</h2>
       <Box className="grid grid-cols-4 gap-4">
         {sizes?.length &&
           sizes?.map((size, index) => {
@@ -30,7 +15,7 @@ const ListSizes = ({ filtre }) => {
                 key={`size-${index}`}
                 onClick={() => filtre("size", size.us)}
               >
-                {size.us}
+                {size.us ? size.us : size}
               </Button>
             )
           })}

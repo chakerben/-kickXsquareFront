@@ -35,7 +35,7 @@ const SearchPage = ({ location, pageContext }) => {
           hasMore={hasMore}
           loader={<h4>Loading...</h4>}
         >
-          <Box className="grid grid-cols-4 gap-4">
+          <Box className="grid grid-cols-4 gap-4 sm-grid-cols-2">
             {newItems?.map((product, i) => (
               <Card product={product} key={`product-${i}`} />
             ))}

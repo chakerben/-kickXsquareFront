@@ -39,7 +39,7 @@ const Card = ({ product }) => {
                 <img
                   width={140}
                   height={75}
-                  src="/static/default-image.png"
+                  src="/default-image.png"
                   placeholder="blurred"
                 />
               )}

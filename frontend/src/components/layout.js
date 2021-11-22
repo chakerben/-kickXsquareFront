@@ -5,13 +5,15 @@ import Banner from "./elements/banner"
 //import NotificationBanner from "./elements/notification-banner"
 import { graphql, useStaticQuery } from "gatsby"
 import Seo from "./seo"
+import { ChakraProvider } from "@chakra-ui/react"
+
 const Layout = ({ children, pageContext, seo }) => {
   const data = useStaticQuery(query)
 
   const { banner, navbar, footer, notificationBanner } = data.strapiGlobal
   //const [bannerIsShown, setBannerIsShown] = useState(true)
   return (
-    <>
+    <ChakraProvider>
       <Seo seo={seo} global={data.strapiGlobal} />
       <div className="flex flex-col justify-between min-h-screen">
         {/* Aligned to the top */}
@@ -33,7 +35,7 @@ const Layout = ({ children, pageContext, seo }) => {
         {/* Aligned to the bottom */}
         <Footer footer={footer} />
       </div>
-    </>
+    </ChakraProvider>
   )
 }
 export const query = graphql`

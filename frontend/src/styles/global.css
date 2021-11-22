@@ -7,6 +7,23 @@ html {
   font-size: 13px;
   @apply text-gray-900;
 }
+.grid-cols-2 {
+grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+@media screen and (max-width: 768px) {
+.sm-grid-cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.sm-grid-cols-1  {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+.sm-grid {
+  display: grid;
+}
+.sm-reverse-grid {
+  grid-row: 1;
+}
+}
 @font-face {
   font-family: 'Segoe UI';
   src: local('SegoeUI'), url(./fonts/SegoeUI.ttf) format('woff');

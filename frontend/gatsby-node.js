@@ -8,6 +8,7 @@ const {
   getListSneakers,
   getImage360,
   getSize,
+  getListSize,
 } = require("./src/api/sneaker")
 
 exports.onCreateWebpackConfig = ({ actions }) => {
@@ -68,6 +69,10 @@ exports.createPages = async ({ graphql, actions }) => {
   })
   //get list sneakers
   const listSneakers = await getListSneakers()
+  let listSizes = await getListSize()
+  listSizes.sort(function (a, b) {
+    return a.us - b.us
+  })
   //create all products page
   const Product = path.resolve("./src/templates/productPage.js")
   const PageTemplate = path.resolve("./src/templates/page.js")
@@ -84,6 +89,7 @@ exports.createPages = async ({ graphql, actions }) => {
       const context = {
         slug: prod.slug,
         prod: prod,
+        sizes: listSizes,
       }
       createPage({
         path: `/sneakers/${prod.slug}`,
@@ -103,6 +109,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const contextRecomended = {
     slug: "sneakers/most-popular",
     sneakers: products?.recomended,
+    sizes: listSizes,
   }
   createPage({
     path: `/${contextRecomended.slug}`,
@@ -114,6 +121,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const contextPopular = {
     slug: "sneakers/recommended",
     sneakers: products?.popular,
+    sizes: listSizes,
   }
   createPage({
     path: `/${contextPopular.slug}`,
@@ -154,6 +162,7 @@ exports.createPages = async ({ graphql, actions }) => {
     const context = {
       slug: prod.slug,
       prod: prod,
+      sizes: listSizes,
     }
     createPage({
       path: `/${prod.slug}`,
@@ -167,6 +176,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const context = {
     slug: "search",
     listSneakers: listSneakers,
+    sizes: listSizes,
   }
   createPage({
     path: "/search",
@@ -193,6 +203,7 @@ exports.createPages = async ({ graphql, actions }) => {
       defaultLocale,
       products: products,
       listSneakers: listSneakers,
+      sizes: listSizes,
     }
 
     const localizedPaths = getLocalizedPaths(context)

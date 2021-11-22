@@ -1,7 +1,7 @@
 import React from "react"
 import Card from "../card"
 import { Link } from "gatsby"
-import { Flex } from "@chakra-ui/react"
+import { Flex, Box } from "@chakra-ui/react"
 
 const LatestBlog = ({ data, articles }) => {
   return (
@@ -24,11 +24,11 @@ const LatestBlog = ({ data, articles }) => {
         </Link>
       </Flex>
       {/* article list */}
-      <Flex className="grid grid-cols-4 gap-4">
+      <Box className="grid grid-cols-4 gap-4 sm-grid-cols-2">
         {articles?.slice(0, data.numberOfArticles).map((article, i) => (
           <Card article={article} key={`article-${i}`} />
         ))}
-      </Flex>
+      </Box>
     </section>
   )
 }
