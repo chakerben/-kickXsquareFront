@@ -70,7 +70,8 @@ $RECYCLE.BIN/
 *.sql
 *.sqlite
 *.sqlite3
-
+.cache/
+public
 
 ############################
 # Misc.
@@ -82,7 +83,7 @@ ssl
 nbproject
 public/uploads/*
 !public/uploads/.gitkeep
-
+public
 ############################
 # Node.js
 ############################

@@ -1,16 +1,16 @@
-import React from "react"
-import NavbarHeader from "./elements/navbar-header"
-import Footer from "./elements/footer"
-import Banner from "./elements/banner"
+import React from "react";
+import NavbarHeader from "./elements/navbar-header";
+import Footer from "./elements/footer";
+import Banner from "./elements/banner";
 //import NotificationBanner from "./elements/notification-banner"
-import { graphql, useStaticQuery } from "gatsby"
-import Seo from "./seo"
-import { ChakraProvider } from "@chakra-ui/react"
+import { graphql, useStaticQuery } from "gatsby";
+import Seo from "./seo";
+import { ChakraProvider } from "@chakra-ui/react";
 
 const Layout = ({ children, pageContext, seo, blog }) => {
-  const data = useStaticQuery(query)
+  const data = useStaticQuery(query);
 
-  const { banner, navbar, footer, notificationBanner } = data.strapiGlobal
+  const { banner, navbar, footer, notificationBanner } = data.strapiGlobal;
   //const [bannerIsShown, setBannerIsShown] = useState(true)
   return (
     <ChakraProvider>
@@ -41,8 +41,8 @@ const Layout = ({ children, pageContext, seo, blog }) => {
         />
       </div>
     </ChakraProvider>
-  )
-}
+  );
+};
 export const query = graphql`
   fragment GlobalData on StrapiGlobal {
     favicon {
@@ -127,6 +127,6 @@ export const query = graphql`
       ...GlobalData
     }
   }
-`
+`;
 
-export default Layout
+export default Layout;

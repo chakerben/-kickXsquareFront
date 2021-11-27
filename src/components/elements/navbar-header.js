@@ -22,7 +22,7 @@ const NavbarHeader = ({ navbar, pageContext }) => {
     <div className="off_home">
       {/* The actual navbar */}
       <nav className=" py-6 sm:py-2 navbar">
-        <div className="xl:px-8 flex flex-row items-center justify-between">
+        <div className="xl:px-8 flex flex-row items-start justify-between">
           {/* Content aligned to the left */}
           <div className="flex flex-row items-center">
             <Link
@@ -35,7 +35,7 @@ const NavbarHeader = ({ navbar, pageContext }) => {
               />
             </Link>
           </div>
-          <Search details={pageContext?.listSneakers} />
+          <Search details={pageContext?.listSneakers} otherPage={true}/>
           {/* List of links on desktop */}
 
           <div className="flex items-center">

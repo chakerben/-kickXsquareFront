@@ -1,23 +1,23 @@
-import React from "react"
-import { Link } from "gatsby"
-import { Box } from "@chakra-ui/layout"
-
+import React from "react";
+import { Link } from "gatsby";
+import { Box } from "@chakra-ui/layout";
+import DefaultImage from "../../../images/defaultImage.png";
 const Card = ({ product }) => {
   const image = product?._sneaker_ref?.miniature?.url
     ? product?._sneaker_ref?.miniature?.url
-    : product?.miniature?.url
+    : product?.miniature?.url;
   const name = product?._sneaker_ref?.full_name
     ? product?._sneaker_ref?.full_name
-    : product?.full_name
+    : product?.full_name;
   const ask = product?._sneaker_ref?.ask
     ? product?._sneaker_ref?.ask
-    : product?.ask
+    : product?.ask;
   const price = product?._sneaker_ref?.retail_price
     ? product?._sneaker_ref?.retail_price
-    : product?.retail_price
+    : product?.retail_price;
   const solde = product?._sneaker_ref?.solde
     ? product?._sneaker_ref?.solde
-    : product?.solde
+    : product?.solde;
   return (
     <Box className="product_card">
       <Link to={`/sneakers/${product?.slug}`} className="uk-link-reset">
@@ -39,7 +39,7 @@ const Card = ({ product }) => {
                 <img
                   width={140}
                   height={75}
-                  src="/default-image.png"
+                  src={DefaultImage}
                   placeholder="blurred"
                 />
               )}
@@ -59,7 +59,7 @@ const Card = ({ product }) => {
         </div>
       </Link>
     </Box>
-  )
-}
+  );
+};
 
-export default Card
+export default Card;

@@ -1,9 +1,9 @@
-import React from "react"
-import { graphql } from "gatsby"
-import { GatsbyImage } from "gatsby-plugin-image"
-import Layout from "../../components/layout"
+import React from "react";
+import { graphql } from "gatsby";
+import { GatsbyImage } from "gatsby-plugin-image";
+import Layout from "../../components/layout";
 
-import Markdown from "react-markdown"
+import Markdown from "react-markdown";
 
 export const query = graphql`
   query ArticleQuery($slug: String!) {
@@ -33,18 +33,18 @@ export const query = graphql`
       }
     }
   }
-`
+`;
 
 const Article = ({ location, data }) => {
-  const pageContext = location?.state?.pageContext 
-  console.log(location)
-  const article = data.strapiArticle
+  const pageContext = location?.state?.pageContext;
+  console.log(location);
+  const article = data.strapiArticle;
   const seo = {
     metaTitle: article.title,
     metaDescription: article.description,
     shareImage: article.image,
     article: true,
-  }
+  };
 
   return (
     <Layout seo={seo} pageContext={{ ...pageContext }}>
@@ -58,7 +58,7 @@ const Article = ({ location, data }) => {
             image={article.image.localFile.childImageSharp?.gatsbyImageData}
             layout="fullWidth"
           />
-          <div          
+          <div
             style={{
               // By using the same grid area for both, they are stacked on top of each other
               gridArea: "1/1",
@@ -103,7 +103,7 @@ const Article = ({ location, data }) => {
         </div>
       </div>
     </Layout>
-  )
-}
+  );
+};
 
-export default Article
+export default Article;

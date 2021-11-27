@@ -1,33 +1,33 @@
-import React, { useState } from "react"
-import Scroll from "./Scroll"
-import SearchList from "./SearchList"
-import { Link } from "gatsby"
+import React, { useState } from "react";
+import Scroll from "./Scroll";
+import SearchList from "./SearchList";
+import { Link } from "gatsby";
+import { Divider } from "@chakra-ui/react";
+function Search({ details, otherPage }) {
+  const [searchField, setSearchField] = useState("");
+  const [searchShow, setSearchShow] = useState(false);
 
-function Search({ details }) {
-  const [searchField, setSearchField] = useState("")
-  const [searchShow, setSearchShow] = useState(false)
-
-  const filteredProducts = details?.filter(product => {
+  const filteredProducts = details?.filter((product) => {
     return (
       product?.nick_name?.toLowerCase()?.includes(searchField.toLowerCase()) ||
       product?.full_name?.toLowerCase()?.includes(searchField.toLowerCase()) ||
       product?.desciption?.toLowerCase()?.includes(searchField.toLowerCase())
-    )
-  })
+    );
+  });
 
-  const handleChange = e => {
-    setSearchField(e.target.value)
+  const handleChange = (e) => {
+    setSearchField(e.target.value);
     if (e.target.value === "") {
-      setSearchShow(false)
+      setSearchShow(false);
     } else {
-      setSearchShow(true)
+      setSearchShow(true);
     }
-  }
+  };
 
   const searchList = () => {
     if (searchShow) {
       return (
-        <Scroll>
+        <Scroll otherPage={otherPage}>
           <Link
             to={"/search"}
             state={{
@@ -35,13 +35,18 @@ function Search({ details }) {
               filteredProducts: filteredProducts,
             }}
           >
-            <h3>{filteredProducts.length} results found in sneakers</h3>
+            <Divider colorScheme="grey" />
+            <h3 className="px-4 py-2 text-xl">
+              <strong>{filteredProducts.length}</strong> results found in
+              sneakers
+            </h3>
           </Link>
+          <Divider colorScheme="grey" />
           <SearchList filteredProducts={filteredProducts} />
         </Scroll>
-      )
+      );
     }
-  }
+  };
 
   return (
     <section className="garamond">
@@ -66,7 +71,7 @@ function Search({ details }) {
       </div>
       {searchList()}
     </section>
-  )
+  );
 }
 
-export default Search
+export default Search;

@@ -15,7 +15,7 @@ const DynamicPage = ({ data, pageContext }) => {
       pageContext={{ ...pageContext, localizations }}
       seo={metadata}
       blog={blog}
-    >d
+    >
       <Sections
         sections={contentSections}
         products={pageContext?.products}
