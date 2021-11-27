@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
-import { Box } from "@chakra-ui/layout"
+import { Box } from "@chakra-ui/react"
 import dayjs from "dayjs"
 const Card = ({ article }) => {
   return (

@@ -11,7 +11,11 @@ const DynamicPage = ({ data, pageContext }) => {
   const [sneakersSlug] = useState(data?.strapiPage?.slug === "sneakers")
   const blog = data.allStrapiArticle
   return (
-    <Layout pageContext={{ ...pageContext, localizations }} seo={metadata}>
+    <Layout
+      pageContext={{ ...pageContext, localizations }}
+      seo={metadata}
+      blog={blog}
+    >
       <Sections
         sections={contentSections}
         products={pageContext?.products}

@@ -7,11 +7,11 @@ module.exports = {
     DEV_SSR: false,
   },
   siteMetadata: {
-    title: `Strapi+Gatsby Corporate Starter`,
-    siteUrl: "https://kickxsquare.herokuapp.com",
-    description: `A Strapi+Gatsby corporate starter`,
-    author: `Strapi`,
-    languages: { defaultLocale: "en", locales: ["en", "fr"] },
+    title: `KickXSquare`,
+    siteUrl: "https://strapi-u1za.onrender.com",
+    description: `KickXSquare website`,
+    author: `Ben Moussa Chaker`,
+    languages: { defaultLocale: "en", locales: ["en"] },
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -43,14 +43,14 @@ module.exports = {
       resolve: "gatsby-source-strapi",
       options: {
         apiURL:
-          process.env.GATSBY_STRAPI_URL || "https://kickxsquare.herokuapp.com",
+          process.env.GATSBY_STRAPI_URL || "https://strapi-u1za.onrender.com",
         collectionTypes: [
           {
             name: "page",
             api: {
               qs: {
                 _publicationState: "preview",
-                _locale: "all",
+                _locale: "en",
               },
             },
           },
@@ -64,14 +64,6 @@ module.exports = {
             api: {
               qs: {
                 _locale: "en",
-              },
-            },
-          },
-          {
-            name: "global",
-            api: {
-              qs: {
-                _locale: "fr",
               },
             },
           },

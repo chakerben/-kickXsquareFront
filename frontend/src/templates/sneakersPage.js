@@ -11,7 +11,6 @@ import _ from "lodash"
 const SneakersPage = ({ pageContext, sneakers, sizes }) => {
   const items = sneakers ? sneakers : pageContext?.sneakers
   const listSizes = sizes ? sizes : pageContext?.sizes
-  console.log(sizes)
   const [filtredItems, setFiltredItems] = useState(items)
   const totalItems = items?.length
   const [filtreSize, SetFiltreSize] = useState()
@@ -35,10 +34,13 @@ const SneakersPage = ({ pageContext, sneakers, sizes }) => {
   useEffect(() => {
     getListSizes()
   }, [])
-  useEffect(() => {
-    filtreAll()
-    refresh(filtredItems)
-  }, [filtrePrice])
+  useEffect(
+    () => {
+      filtreAll()
+    },
+    [filtrePrice],
+    [filtreSize]
+  )
   const fetchMoreData = lastIndex => {
     setLastItemIndex(lastIndex + maxItems)
     if (lastIndex >= totalItems) {
@@ -111,13 +113,13 @@ const SneakersPage = ({ pageContext, sneakers, sizes }) => {
     if (type === "removePrice") {
       if (filtreSize) {
         filtredList = filtreBySize(filtreSize, filtredList)
-        if (filtre?.length) {
+        if (filtre?.length > 0) {
           filtredList = filtreByPrice(filtredList, filtre)
         }
         setFiltredItems(filtredList)
         refresh(filtredList)
       } else {
-        if (filtre?.length) {
+        if (filtre?.length > 0) {
           filtredList = filtreByPrice(filtredItems, filtre)
           setFiltredItems(filtredList)
           refresh(filtredList)
@@ -170,7 +172,7 @@ const SneakersPage = ({ pageContext, sneakers, sizes }) => {
       </div>
       <div className="ml-6 pt-1">
         <Box className="grid grid-cols-4 gap-4">
-          {(filtreSize || filtrePrice.length) && (
+          {(filtreSize || filtrePrice.length > 0) && (
             <Button
               colorScheme="teal"
               variant="solid"

@@ -28,14 +28,13 @@ const ProductPage = ({ pageContext }) => {
     product.size_item = []
     product?._sneaker_item_of_sneaker_ref?.map(item => {
       const sizeItem = listSizes?.find(size => size.id === item?.size_id)
-      product?.size_item?.push(sizeItem.us)
+      product?.size_item?.push({ us: sizeItem.us, price: item.selling_price })
     })
     console.log(product)
   }
   const getImage360 = async id => {
     const imageList = await SneakerApi.getImage360(id)
     setImages360(imageList)
-    console.log(imageList)
   }
   const newlineText = desc => {
     const text = desc
@@ -73,7 +72,7 @@ const ProductPage = ({ pageContext }) => {
             <Tag variant="solid" colorScheme="teal">
               {product?.colorway}
             </Tag>
-            {images360 && images360?.length && (
+            {images360?.length > 0 && (
               <ThreeSixty
                 amount={36}
                 imagePath="https://scaleflex.cloudimg.io/width/600/q35/https://scaleflex.ultrafast.io/https://scaleflex.airstore.io/demo/chair-360-36"
@@ -85,7 +84,6 @@ const ProductPage = ({ pageContext }) => {
           </Box>
           <Box className="sm-reverse-grid">
             <Box
-              maxW="sm"
               borderWidth="1px"
               borderRadius="0.25rem"
               overflow="hidden"
@@ -154,7 +152,10 @@ const ProductPage = ({ pageContext }) => {
                 </Box>
               </Flex>
             </Box>
-            <Box textAlign="left">Last Sale: $306</Box>
+            <Box textAlign="left">
+              Last Sale:
+              <h2 style={{ fontSize: "20px", fontWeight: "bold" }}>$306</h2>
+            </Box>
           </Box>
         </Box>
         <Box mt="20px">

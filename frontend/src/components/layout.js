@@ -7,7 +7,7 @@ import { graphql, useStaticQuery } from "gatsby"
 import Seo from "./seo"
 import { ChakraProvider } from "@chakra-ui/react"
 
-const Layout = ({ children, pageContext, seo }) => {
+const Layout = ({ children, pageContext, seo, blog }) => {
   const data = useStaticQuery(query)
 
   const { banner, navbar, footer, notificationBanner } = data.strapiGlobal
@@ -33,7 +33,12 @@ const Layout = ({ children, pageContext, seo }) => {
           <div>{children}</div>
         </div>
         {/* Aligned to the bottom */}
-        <Footer footer={footer} />
+        <Footer
+          footer={footer}
+          pageContext={pageContext}
+          blog={blog}
+          navbar={navbar}
+        />
       </div>
     </ChakraProvider>
   )
