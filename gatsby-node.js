@@ -6,8 +6,6 @@ const {
   getRecentlyViewed,
   getSneakersByBrand,
   getListSneakers,
-  getImage360,
-  getSize,
   getListSize,
 } = require("./src/api/sneaker")
 
@@ -67,6 +65,27 @@ exports.createPages = async ({ graphql, actions }) => {
 
     return data.allStrapiPage.nodes
   })
+  const blog = await graphql(
+    `
+      query Blog {
+          allStrapiArticle {
+          edges {
+            node {
+              title
+              slug
+              strapiId
+            }
+          }
+      }
+    }
+    `  )
+  //category on home page (recommended by us, brand , popular)
+  let products = {
+    brand: await getBrand(),
+    recomended: await getMostPopularSneakers(),
+    popular: await getRecentlyViewed(),
+    blog: blog?.data?.allStrapiArticle?.edges
+  }
   //get list sneakers
   const listSneakers = await getListSneakers()
   let listSizes = await getListSize()
@@ -90,6 +109,8 @@ exports.createPages = async ({ graphql, actions }) => {
         slug: prod.slug,
         prod: prod,
         sizes: listSizes,
+        listSneakers: listSneakers,
+        products: products
       }
       createPage({
         path: `/sneakers/${prod.slug}`,
@@ -100,16 +121,14 @@ exports.createPages = async ({ graphql, actions }) => {
       })
     })
 
-  //category on home page (recommended by us, brand , popular)
-  let products = {
-    brand: await getBrand(),
-    recomended: await getMostPopularSneakers(),
-    popular: await getRecentlyViewed(),
-  }
+  
   const contextRecomended = {
     slug: "sneakers/most-popular",
     sneakers: products?.recomended,
     sizes: listSizes,
+    listSneakers: listSneakers,
+    products: products
+    
   }
   createPage({
     path: `/${contextRecomended.slug}`,
@@ -122,6 +141,8 @@ exports.createPages = async ({ graphql, actions }) => {
     slug: "sneakers/recommended",
     sneakers: products?.popular,
     sizes: listSizes,
+    listSneakers: listSneakers,
+    products: products
   }
   createPage({
     path: `/${contextPopular.slug}`,
@@ -163,6 +184,8 @@ exports.createPages = async ({ graphql, actions }) => {
       slug: prod.slug,
       prod: prod,
       sizes: listSizes,
+      listSneakers: listSneakers,
+      products: products
     }
     createPage({
       path: `/${prod.slug}`,
@@ -177,6 +200,7 @@ exports.createPages = async ({ graphql, actions }) => {
     slug: "search",
     listSneakers: listSneakers,
     sizes: listSizes,
+    products: products
   }
   createPage({
     path: "/search",
@@ -211,6 +235,7 @@ exports.createPages = async ({ graphql, actions }) => {
     createPage({
       path: `${localePrefix}/${slug}`,
       component: PageTemplate,
+      
       context: {
         ...context,
         localizedPaths,

@@ -3,10 +3,12 @@ import { Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import { Box } from "@chakra-ui/react"
 import dayjs from "dayjs"
-const Card = ({ article }) => {
+const Card = ({ article, pageContext }) => {
   return (
     <Box className="article_card">
-      <Link to={`/article/${article?.node?.slug}`} className="uk-link-reset">
+      <Link to={`/article/${article?.node?.slug}`} className="uk-link-reset" state={{
+              pageContext: pageContext
+            }}>
         <div className="uk-card uk-card-muted">
           <div className="uk-card-media-top">
             <GatsbyImage

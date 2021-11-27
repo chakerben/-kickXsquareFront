@@ -35,8 +35,9 @@ export const query = graphql`
   }
 `
 
-const Article = ({ data }) => {
-  console.log(data)
+const Article = ({ location, data }) => {
+  const pageContext = location?.state?.pageContext 
+  console.log(location)
   const article = data.strapiArticle
   const seo = {
     metaTitle: article.title,
@@ -46,7 +47,7 @@ const Article = ({ data }) => {
   }
 
   return (
-    <Layout seo={seo}>
+    <Layout seo={seo} pageContext={{ ...pageContext }}>
       <div>
         <div style={{ display: "grid" }}>
           <GatsbyImage
@@ -57,7 +58,7 @@ const Article = ({ data }) => {
             image={article.image.localFile.childImageSharp?.gatsbyImageData}
             layout="fullWidth"
           />
-          <div
+          <div          
             style={{
               // By using the same grid area for both, they are stacked on top of each other
               gridArea: "1/1",

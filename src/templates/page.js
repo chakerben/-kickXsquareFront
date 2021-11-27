@@ -15,13 +15,13 @@ const DynamicPage = ({ data, pageContext }) => {
       pageContext={{ ...pageContext, localizations }}
       seo={metadata}
       blog={blog}
-    >
+    >d
       <Sections
         sections={contentSections}
         products={pageContext?.products}
         articles={blog?.edges}
       />
-      {blogSlug && <ArticlesComponent articles={blog?.edges} />}
+      {blogSlug && <ArticlesComponent articles={blog?.edges} pageContext={{ ...pageContext, localizations }}/>}
       {sneakersSlug && (
         <SneakersPage
           sneakers={pageContext.listSneakers}

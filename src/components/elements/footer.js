@@ -6,7 +6,7 @@ import { Divider, Box, Flex, Icon } from "@chakra-ui/react"
 import _ from "loadsh"
 import { localizePath } from "@/utils/localize"
 const Footer = ({ footer, pageContext, blog, navbar }) => {
-  console.log(navbar)
+  const allArticles = blog ? blog?.edges : pageContext?.products?.blog
   return (
     <footer className="pt-12" style={{backgroundColor:"#242424"}} >
       <div className="container">
@@ -38,7 +38,7 @@ const Footer = ({ footer, pageContext, blog, navbar }) => {
                     </li>
                   ))}
                 {_.toUpper(footerColumn.title) === "NEWS" &&
-                  blog?.edges?.map((article, index) => (
+                  allArticles?.map((article, index) => (
                     <li
                       key={index}
                       className="text-gray-500 py-1 px-1 -mx-1 hover:text-green-700"

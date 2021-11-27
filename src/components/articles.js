@@ -1,7 +1,7 @@
 import React from "react";
 import Card from "./card";
 
-const Articles = ({ articles }) => {
+const Articles = ({ articles, pageContext }) => {
   const leftArticlesCount = Math.ceil(articles.length / 5);
   const leftArticles = articles.slice(0, leftArticlesCount);
   const rightArticles = articles.slice(leftArticlesCount, articles.length);
@@ -14,6 +14,7 @@ const Articles = ({ articles }) => {
             return (
               <Card
                 article={article}
+                pageContext= {pageContext}
                 key={`article__left__${article.node.slug}`}
               />
             );
@@ -25,6 +26,7 @@ const Articles = ({ articles }) => {
               return (
                 <Card
                   article={article}
+                  pageContext= {pageContext}
                   key={`article__right__${article.node.slug}`}
                 />
               );
