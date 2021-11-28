@@ -35,12 +35,12 @@ const NavbarHeader = ({ navbar, pageContext }) => {
               />
             </Link>
           </div>
-          <Search details={pageContext?.listSneakers} otherPage={true}/>
+          <Search details={pageContext?.listSneakers} otherPage={true} />
           {/* List of links on desktop */}
 
           <div className="flex items-center">
             <ul className="hidden list-none md:flex flex-row gap-4 items-baseline ml-10">
-              {navbar.links.map(navLink => (
+              {navbar.links.map((navLink) => (
                 <li key={navLink.id}>
                   <CustomLink
                     link={{

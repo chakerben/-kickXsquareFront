@@ -1,18 +1,18 @@
-import React from "react";
-import { Link } from "gatsby";
-import DefaultImage from "../../../images/defaultImage.png";
-import { Divider, Flex, Box } from "@chakra-ui/react";
+import React from "react"
+import { Link } from "gatsby"
+import DefaultImage from "../../../images/defaultImage.png"
+import { Divider, Flex, Box } from "@chakra-ui/react"
 
 const Card = ({ product }) => {
   const image = product?._sneaker_ref?.miniature?.url
     ? product?._sneaker_ref?.miniature?.url
-    : product?.miniature?.url;
+    : product?.miniature?.url
   const fullName = product?._sneaker_ref?.full_name
     ? product?._sneaker_ref?.full_name
-    : product?.full_name;
+    : product?.full_name
   const name = product?._sneaker_ref?.full_name
     ? product?._sneaker_ref?.nick_name
-    : product?.nick_name;
+    : product?.nick_name
   return (
     <Box>
       <Divider colorScheme="grey" />
@@ -42,7 +42,7 @@ const Card = ({ product }) => {
         </div>
       </Link>
     </Box>
-  );
-};
+  )
+}
 
-export default Card;
+export default Card

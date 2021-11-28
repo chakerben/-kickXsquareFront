@@ -1,12 +1,12 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { linkPropTypes, mediaPropTypes } from "@/utils/types";
-import CustomLink from "./custom-link";
-import { Divider, Flex, Icon } from "@chakra-ui/react";
-import _ from "loadsh";
-import { localizePath } from "@/utils/localize";
+import React from "react"
+import PropTypes from "prop-types"
+import { linkPropTypes, mediaPropTypes } from "@/utils/types"
+import CustomLink from "./custom-link"
+import { Divider, Flex, Icon } from "@chakra-ui/react"
+import _ from "loadsh"
+import { localizePath } from "@/utils/localize"
 const Footer = ({ footer, pageContext, blog, navbar }) => {
-  const allArticles = blog ? blog?.edges : pageContext?.products?.blog;
+  const allArticles = blog ? blog?.edges : pageContext?.products?.blog
   return (
     <footer className="pt-12" style={{ backgroundColor: "#242424" }}>
       <div className="container">
@@ -14,7 +14,7 @@ const Footer = ({ footer, pageContext, blog, navbar }) => {
           {footer.columns.map((footerColumn) => (
             <div
               key={footerColumn.id}
-              className="mt-10 lg:mt-0 w-6/12 lg:w-auto"
+              className="mt-10 lg:mt-0 w-full sm:w-full lg:w-auto"
             >
               <p className="uppercase tracking-wide font-semibold text-white">
                 {footerColumn.title}
@@ -182,8 +182,8 @@ const Footer = ({ footer, pageContext, blog, navbar }) => {
         </div>
       </div>
     </footer>
-  );
-};
+  )
+}
 
 Footer.propTypes = {
   footer: PropTypes.shape({
@@ -198,6 +198,6 @@ Footer.propTypes = {
     ),
     smallText: PropTypes.string.isRequired,
   }),
-};
+}
 
-export default Footer;
+export default Footer

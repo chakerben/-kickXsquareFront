@@ -1,28 +1,28 @@
-import React, { useState } from "react";
-import Scroll from "./Scroll";
-import SearchList from "./SearchList";
-import { Link } from "gatsby";
-import { Divider } from "@chakra-ui/react";
+import React, { useState } from "react"
+import Scroll from "./Scroll"
+import SearchList from "./SearchList"
+import { Link } from "gatsby"
+import { Divider } from "@chakra-ui/react"
 function Search({ details, otherPage }) {
-  const [searchField, setSearchField] = useState("");
-  const [searchShow, setSearchShow] = useState(false);
+  const [searchField, setSearchField] = useState("")
+  const [searchShow, setSearchShow] = useState(false)
 
   const filteredProducts = details?.filter((product) => {
     return (
       product?.nick_name?.toLowerCase()?.includes(searchField.toLowerCase()) ||
       product?.full_name?.toLowerCase()?.includes(searchField.toLowerCase()) ||
       product?.desciption?.toLowerCase()?.includes(searchField.toLowerCase())
-    );
-  });
+    )
+  })
 
   const handleChange = (e) => {
-    setSearchField(e.target.value);
+    setSearchField(e.target.value)
     if (e.target.value === "") {
-      setSearchShow(false);
+      setSearchShow(false)
     } else {
-      setSearchShow(true);
+      setSearchShow(true)
     }
-  };
+  }
 
   const searchList = () => {
     if (searchShow) {
@@ -44,9 +44,9 @@ function Search({ details, otherPage }) {
           <Divider colorScheme="grey" />
           <SearchList filteredProducts={filteredProducts} />
         </Scroll>
-      );
+      )
     }
-  };
+  }
 
   return (
     <section className="garamond">
@@ -71,7 +71,7 @@ function Search({ details, otherPage }) {
       </div>
       {searchList()}
     </section>
-  );
+  )
 }
 
-export default Search;
+export default Search

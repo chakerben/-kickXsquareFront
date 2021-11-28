@@ -1,5 +1,5 @@
-const path = require("path");
-const { getLocalizedPaths } = require("./src/utils/localize");
+const path = require("path")
+const { getLocalizedPaths } = require("./src/utils/localize")
 const {
   getBrand,
   getMostPopularSneakers,
@@ -7,7 +7,7 @@ const {
   getSneakersByBrand,
   getListSneakers,
   getListSize,
-} = require("./src/api/sneaker");
+} = require("./src/api/sneaker")
 
 exports.onCreateWebpackConfig = ({ actions }) => {
   actions.setWebpackConfig({
@@ -16,11 +16,11 @@ exports.onCreateWebpackConfig = ({ actions }) => {
         "@": path.resolve(__dirname, "src"),
       },
     },
-  });
-};
+  })
+}
 
 exports.createPages = async ({ graphql, actions }) => {
-  const { createPage } = actions;
+  const { createPage } = actions
   // **Note:** The graphql function call returns a Promise
   // see: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise for more info
 
@@ -43,7 +43,7 @@ exports.createPages = async ({ graphql, actions }) => {
         }
       }
     }
-  `);
+  `)
 
   const localePages = locales.map(async (locale) => {
     const { data } = await graphql(
@@ -61,10 +61,10 @@ exports.createPages = async ({ graphql, actions }) => {
         }
       `,
       { locale: locale }
-    );
+    )
 
-    return data.allStrapiPage.nodes;
-  });
+    return data.allStrapiPage.nodes
+  })
   const blog = await graphql(
     `
       query Blog {
@@ -79,48 +79,48 @@ exports.createPages = async ({ graphql, actions }) => {
         }
       }
     `
-  );
+  )
   //category on home page (recommended by us, brand , popular)
   let products = {
     brand: await getBrand(),
     recomended: await getMostPopularSneakers(),
     popular: await getRecentlyViewed(),
     blog: blog?.data?.allStrapiArticle?.edges,
-  };
+  }
   //get list sneakers
-  const listSneakers = await getListSneakers();
-  let listSizes = await getListSize();
+  const listSneakers = await getListSneakers()
+  let listSizes = await getListSize()
   listSizes.sort(function (a, b) {
-    return a.us - b.us;
-  });
+    return a.us - b.us
+  })
   //create all products page
-  const Product = path.resolve("./src/templates/productPage.js");
-  const PageTemplate = path.resolve("./src/templates/page.js");
-  const BrandPage = path.resolve("./src/templates/brandPage.js");
-  const SearchPage = path.resolve("./src/templates/searchPage.js");
-  const SneakersPage = path.resolve("./src/templates/sneakersPage.js");
+  const Product = path.resolve("./src/templates/productPage.js")
+  const PageTemplate = path.resolve("./src/templates/page.js")
+  const BrandPage = path.resolve("./src/templates/brandPage.js")
+  const SearchPage = path.resolve("./src/templates/searchPage.js")
+  const SneakersPage = path.resolve("./src/templates/sneakersPage.js")
   listSneakers &&
     listSneakers?.map((prod) => {
       const slug = prod?.nick_name
         ?.toLowerCase()
         ?.replace(/ /g, "-")
-        ?.replace(/[^\w-]+/g, "");
-      prod.slug = slug;
+        ?.replace(/[^\w-]+/g, "")
+      prod.slug = slug
       const context = {
         slug: prod.slug,
         prod: prod,
         sizes: listSizes,
         listSneakers: listSneakers,
         products: products,
-      };
+      }
       createPage({
         path: `/sneakers/${prod.slug}`,
         component: Product,
         context: {
           ...context,
         },
-      });
-    });
+      })
+    })
 
   const contextRecomended = {
     slug: "sneakers/most-popular",
@@ -128,59 +128,55 @@ exports.createPages = async ({ graphql, actions }) => {
     sizes: listSizes,
     listSneakers: listSneakers,
     products: products,
-  };
+  }
   createPage({
     path: `/${contextRecomended.slug}`,
     component: SneakersPage,
     context: {
       ...contextRecomended,
     },
-  });
+  })
   const contextPopular = {
     slug: "sneakers/recommended",
     sneakers: products?.popular,
     sizes: listSizes,
     listSneakers: listSneakers,
     products: products,
-  };
+  }
   createPage({
     path: `/${contextPopular.slug}`,
     component: SneakersPage,
     context: {
       ...contextPopular,
     },
-  });
-  const pages = await (await Promise.all(localePages)).flat();
+  })
+  const pages = await (await Promise.all(localePages)).flat()
   //add Slug for products
   products?.recomended?.map(async (prod) => {
-    let name = prod?.nick_name
-      ? prod?.nick_name
-      : prod?._sneaker_ref?.nick_name;
+    let name = prod?.nick_name ? prod?.nick_name : prod?._sneaker_ref?.nick_name
     const slug = name
       ?.toLowerCase()
       ?.replace(/ /g, "-")
-      ?.replace(/[^\w-]+/g, "");
-    prod.slug = slug;
-  });
+      ?.replace(/[^\w-]+/g, "")
+    prod.slug = slug
+  })
   products?.popular?.map(async (prod) => {
-    let name = prod?.nick_name
-      ? prod?.nick_name
-      : prod?._sneaker_ref?.nick_name;
+    let name = prod?.nick_name ? prod?.nick_name : prod?._sneaker_ref?.nick_name
     const slug = name
       ?.toLowerCase()
       ?.replace(/ /g, "-")
-      ?.replace(/[^\w-]+/g, "");
-    prod.slug = slug;
-  });
+      ?.replace(/[^\w-]+/g, "")
+    prod.slug = slug
+  })
 
   products?.brand?.map(async (categ) => {
     const slug = categ?.name
       ?.toLowerCase()
       ?.replace(/ /g, "-")
-      ?.replace(/[^\w-]+/g, "");
-    categ.slug = slug;
-    categ.list = await getSneakersByBrand(categ.id);
-  });
+      ?.replace(/[^\w-]+/g, "")
+    categ.slug = slug
+    categ.list = await getSneakersByBrand(categ.id)
+  })
   //create brand page
   products?.brand?.map((prod) => {
     const context = {
@@ -189,38 +185,38 @@ exports.createPages = async ({ graphql, actions }) => {
       sizes: listSizes,
       listSneakers: listSneakers,
       products: products,
-    };
+    }
     createPage({
       path: `/${prod.slug}`,
       component: BrandPage,
       context: {
         ...context,
       },
-    });
-  });
+    })
+  })
   //Create search page
   const context = {
     slug: "search",
     listSneakers: listSneakers,
     sizes: listSizes,
     products: products,
-  };
+  }
   createPage({
     path: "/search",
     component: SearchPage,
     context: {
       ...context,
     },
-  });
+  })
   // Create all non-root pages based on Strapi data
   pages.forEach((page) => {
-    const slug = page.slug ? page.slug : "";
+    const slug = page.slug ? page.slug : ""
     // The default locale has no prefix
     // The root of all other locales should be the locale code (i.e. /fr)
     const localePrefix =
       page.locale === defaultLocale || locales.includes(page.slug)
         ? ""
-        : page.locale;
+        : page.locale
 
     const context = {
       slug: page.slug,
@@ -231,9 +227,9 @@ exports.createPages = async ({ graphql, actions }) => {
       products: products,
       listSneakers: listSneakers,
       sizes: listSizes,
-    };
+    }
 
-    const localizedPaths = getLocalizedPaths(context);
+    const localizedPaths = getLocalizedPaths(context)
 
     createPage({
       path: `${localePrefix}/${slug}`,
@@ -243,10 +239,10 @@ exports.createPages = async ({ graphql, actions }) => {
         ...context,
         localizedPaths,
       },
-    });
-  });
+    })
+  })
 
-  const PreviewPage = path.resolve("./src/templates/preview.js");
+  const PreviewPage = path.resolve("./src/templates/preview.js")
 
   locales.forEach((locale) => {
     const params = {
@@ -255,8 +251,8 @@ exports.createPages = async ({ graphql, actions }) => {
       context: {
         locale,
       },
-    };
-    createPage(params);
+    }
+    createPage(params)
     // Assures onCreatePage is called since it's currently not for programmatically created pages in
     // gatsby-node.js. It only works for plugin created pages and pages in the `/pages` folder.
     // NOTE: If Gatsby issue #5255 is ever fixed we'll want to remove this code else onCreatePages will be called twice.
@@ -264,17 +260,17 @@ exports.createPages = async ({ graphql, actions }) => {
     onCreatePage({
       page: params,
       actions: { createPage },
-    });
-  });
-};
+    })
+  })
+}
 
 onCreatePage = async ({ page, actions }) => {
-  const { createPage } = actions;
+  const { createPage } = actions
   if (page.path.includes("preview")) {
     // page.matchPath is a special key that's used for matching pages
     // with corresponding routes only on the client.
-    page.matchPath = "/:locale/preview/:slug";
+    page.matchPath = "/:locale/preview/:slug"
     // Update the page.
-    createPage(page);
+    createPage(page)
   }
-};
+}

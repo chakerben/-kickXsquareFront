@@ -1,7 +1,7 @@
-import React from "react";
-import { graphql } from "gatsby";
-import ArticlesComponent from "../../components/articles";
-import Layout from "../../components/layout";
+import React from "react"
+import { graphql } from "gatsby"
+import ArticlesComponent from "../../components/articles"
+import Layout from "../../components/layout"
 
 export const query = graphql`
   query Category($slug: String!) {
@@ -37,18 +37,18 @@ export const query = graphql`
       name
     }
   }
-`;
+`
 
 const Category = ({ data }) => {
-  const articles = data.articles.edges;
-  const category = data.category.name;
+  const articles = data.articles.edges
+  const category = data.category.name
   const seo = {
     metaTitle: category,
     metaDescription: `All ${category} articles`,
-  };
+  }
 
   return (
-    <Layout seo={seo} >
+    <Layout seo={seo}>
       <div className="uk-section">
         <div className="uk-container uk-container-large">
           <h1>{category}</h1>
@@ -56,7 +56,7 @@ const Category = ({ data }) => {
         </div>
       </div>
     </Layout>
-  );
-};
+  )
+}
 
-export default Category;
+export default Category

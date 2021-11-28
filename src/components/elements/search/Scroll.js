@@ -1,8 +1,8 @@
-import React from "react";
+import React from "react"
 
 const Scroll = (props) => {
-  const otherPage = props?.otherPage;
-  console.log(otherPage);
+  const otherPage = props?.otherPage
+  console.log(otherPage)
   return (
     <div
       style={{
@@ -15,7 +15,7 @@ const Scroll = (props) => {
     >
       {props.children}
     </div>
-  );
-};
+  )
+}
 
-export default Scroll;
+export default Scroll

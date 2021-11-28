@@ -2,35 +2,52 @@
 @tailwind components;
 @tailwind utilities;
 
-
 html {
   font-size: 13px;
   @apply text-gray-900;
 }
 .grid-cols-2 {
-grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-@media screen and (max-width: 768px) {
-.sm-grid-cols-2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
-.sm-grid-cols-1  {
-  grid-template-columns: repeat(1, minmax(0, 1fr));
-}
-.sm-grid {
-  display: grid;
-}
-.sm-reverse-grid {
-  grid-row: 1;
-}
+@media screen and (max-width: 768px) {
+  .sm-grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .sm-grid-cols-1 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+  .sm-grid {
+    display: grid;
+  }
+  .sm-reverse-grid {
+    grid-row: 1;
+  }
 }
 @font-face {
-  font-family: 'Segoe UI';
-  src: local('SegoeUI'), url(./fonts/SegoeUI.ttf) format('woff');
+  font-family: "Segoe-UI";
+  src: local("SegoeUI"), url(./fonts/SegoeUI.ttf) format("woff");
 }
-
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+@font-face {
+  font-family: "Dubai-Bold";
+  src: local("Dubai-Bold"), url(./fonts/Dubai-Bold.ttf) format("woff");
+}
+@font-face {
+  font-family: "Dubai-Light";
+  src: local("Dubai-Light"), url(./fonts/Dubai-Light.ttf) format("woff");
+}
+@font-face {
+  font-family: "Dubai-Medium";
+  src: local("Dubai-Medium"), url(./fonts/Dubai-Medium.ttf) format("woff");
+}
+@font-face {
+  font-family: "Dubai-Regular";
+  src: local("Dubai-Regular"), url(./fonts/Dubai-Regular.ttf) format("woff");
+}
+body > * {
+  font-family: "Segoe-UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+body .blog > * {
+  font-family: "Dubai-Regular", Tahoma, Geneva, Verdana, sans-serif;
 }
 @media screen and (min-width: 640px) {
   html {
@@ -111,54 +128,54 @@ img:hover {
   margin-left: 0.5em;
 }
 .banner {
-    background-position: center;
-    height: 579px;
-    align-items: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-color: #000;
-    text-align: center;
-    justify-content: center;
+  background-position: center;
+  height: 579px;
+  align-items: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: #000;
+  text-align: center;
+  justify-content: center;
 }
 .banner h1 {
-    display: block;
-    font-size: 56px;
-    font-weight: 700;
-    color: white;
-    padding-left: 10px;
-    padding-right: 10px;
-    letter-spacing: 2px;
-    margin: auto;
-    margin-top: 20px;
+  display: block;
+  font-size: 56px;
+  font-weight: 700;
+  color: white;
+  padding-left: 10px;
+  padding-right: 10px;
+  letter-spacing: 2px;
+  margin: auto;
+  margin-top: 20px;
 }
 .banner h2 {
-    font-size: 56px;
-    display: inline-block;
-    font-weight: 700;
-    padding: 2px;
-    text-transform: capitalize;
-    background-color: #006340;
-    color: white;
-    padding-left: 10px;
-    padding-right: 10px;
-    letter-spacing: 2px;
-    margin: auto;
-    margin-bottom: 20px;
+  font-size: 56px;
+  display: inline-block;
+  font-weight: 700;
+  padding: 2px;
+  text-transform: capitalize;
+  background-color: #006340;
+  color: white;
+  padding-left: 10px;
+  padding-right: 10px;
+  letter-spacing: 2px;
+  margin: auto;
+  margin-bottom: 20px;
 }
 .searchbox {
-    color: #0f0f0f;
-    padding-left: 60px;
-    font-size: 14px;
-    height: 56px;
-    font-weight: 300;
-    border: none;
-    background-color: white;
-    border-radius: 2px;
-    box-shadow: none;
-    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-    line-height: 1.42857143;
-    outline-offset: -2px;
-    width: 100%;
+  color: #0f0f0f;
+  padding-left: 60px;
+  font-size: 14px;
+  height: 56px;
+  font-weight: 300;
+  border: none;
+  background-color: white;
+  border-radius: 2px;
+  box-shadow: none;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  line-height: 1.42857143;
+  outline-offset: -2px;
+  width: 100%;
 }
 .pa2 {
   width: 640px;
@@ -166,10 +183,10 @@ img:hover {
   position: relative;
 }
 .garamond {
-    margin: auto;
-    max-width: 980px;
-    padding-left: 15px;
-    padding-right: 15px;
+  margin: auto;
+  max-width: 980px;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 @media (max-width: 768px) {
   .pa2 {
@@ -178,25 +195,25 @@ img:hover {
     position: relative;
   }
   .garamond {
-      margin: auto;
-      max-width: 90%;
-      padding-left: 15px;
-      padding-right: 15px;
+    margin: auto;
+    max-width: 90%;
+    padding-left: 15px;
+    padding-right: 15px;
   }
 }
 .garamond svg {
   width: 1.125rem;
-    height: 1.125rem;
-    display: inline-block;
-    line-height: 1em;
-    -webkit-flex-shrink: 0;
-    -ms-flex-negative: 0;
-    flex-shrink: 0;
-    color: black;
-    vertical-align: middle;
-    position: absolute;
-    top: 21px;
-    left: 20px;
+  height: 1.125rem;
+  display: inline-block;
+  line-height: 1em;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  color: black;
+  vertical-align: middle;
+  position: absolute;
+  top: 21px;
+  left: 20px;
 }
 nav li {
   position: relative;
@@ -227,7 +244,7 @@ nav.navbar li a:hover {
 .off_home .garamond {
   width: 90%;
   padding-right: 2rem;
-  border-color: #E2E8F0;
+  border-color: #e2e8f0;
   word-wrap: break-word;
   max-width: none;
 }
@@ -237,52 +254,56 @@ nav.navbar li a:hover {
 }
 .off_home nav.navbar .searchbox {
   border-radius: 3px;
-    background-color: #fafafa;
-    padding-right: 1rem;
-    height: 55px;
-    text-overflow: ellipsis;
-    color: #0F0F0F;
-    padding-left: 45px;
-    border: 1px solid #A1A5A4;
+  background-color: #fafafa;
+  padding-right: 1rem;
+  height: 55px;
+  text-overflow: ellipsis;
+  color: #0f0f0f;
+  padding-left: 45px;
+  border: 1px solid #a1a5a4;
 }
 
 .uk-link-reset {
   color: #006340;
   font-size: 1.2rem;
 }
-.uk-link-reset svg{
-width: 1em;
-height: 1em;
-display: inline-block;
-line-height: 1em;
-flex-shrink: 0;
-color: currentColor;
-vertical-align: middle;
+.uk-link-reset svg {
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  line-height: 1em;
+  flex-shrink: 0;
+  color: currentColor;
+  vertical-align: middle;
 }
 .brand_card {
   padding: 0 8px;
 }
-.product_card, .article_card{
+.product_card,
+.article_card {
   border: 1px solid #ededed;
   margin: auto 8px;
 }
-h2.section-title{
+h2.section-title {
   font-weight: 700;
   font-size: 1.8rem;
   line-height: 1.4;
   min-height: 0vw;
   padding: 8px;
 }
-.product_card .uk-card-media-top-img, .article_card .uk-card-media-top-img{
+.product_card .uk-card-media-top-img,
+.article_card .uk-card-media-top-img {
   width: 140px;
   height: 75px;
   max-width: 100%;
-  margin: 0px auto; 
+  margin: 0px auto;
 }
-.product_card .uk-card-media-top, .article_card .uk-card-media-top{
+.product_card .uk-card-media-top,
+.article_card .uk-card-media-top {
   margin: 16px;
 }
-.product_card .uk-card-body, .article_card  .uk-card-body{
+.product_card .uk-card-body,
+.article_card .uk-card-body {
   background-color: #fafafa;
   padding: 1rem;
   text-align: left;
@@ -294,16 +315,17 @@ h2.section-title{
   font-weight: 500;
   line-height: 1.3;
 }
-.article_card .uk-text-large  {
+.article_card .uk-text-large {
   font-size: 1.3rem;
   height: 4rem;
   color: #0f0f0f;
   font-weight: 500;
   line-height: 1.3;
 }
-.product_card .price-line-div .ask, .product_card .sold {
+.product_card .price-line-div .ask,
+.product_card .sold {
   letter-spacing: 0.004rem;
-  color: #5F5F5F;
+  color: #5f5f5f;
   text-transform: capitalize;
   font-size: 0.85rem;
   overflow: hidden;
@@ -314,7 +336,7 @@ h2.section-title{
   line-height: 1.42;
   letter-spacing: 0.004rem;
   font-size: 1rem;
-  color: #A1A5A4;
+  color: #a1a5a4;
   font-weight: 400;
 }
 .product_card .price-line-div .price {
@@ -326,6 +348,28 @@ h2.section-title{
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+.blog h1.title {
+  font-size: 6.5rem;
+  letter-spacing: -0.1875rem;
+  line-height: 0.84;
+  max-width: 814px;
+  margin: 0 auto;
+  text-align: center;
+}
+.head-article {
+  max-width: 1295px;
+  margin: 0px auto;
+  width: 94%;
+  position: relative;
+}
+.layout-1__image {
+  order: unset;
+  position: absolute;
+  width: 50%;
+  margin: 0px;
+  right: 0px;
+  z-index: 1;
+}
 @media (max-width: 768px) {
   .off_home .garamond {
     width: 100%;
@@ -336,5 +380,8 @@ h2.section-title{
   }
   .gatsby-image-wrapper.gatsby-image-wrapper-constrained.h-8.w-auto.object-contain {
     height: 119px;
+  }
+  .blog h1.title {
+    font-size: 4.5rem;
   }
 }

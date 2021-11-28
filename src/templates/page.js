@@ -10,6 +10,7 @@ const DynamicPage = ({ data, pageContext }) => {
   const [blogSlug] = useState(data?.strapiPage?.slug === "news")
   const [sneakersSlug] = useState(data?.strapiPage?.slug === "sneakers")
   const blog = data.allStrapiArticle
+  const categ = data.allStrapiCategory
   return (
     <Layout
       pageContext={{ ...pageContext, localizations }}
@@ -21,7 +22,13 @@ const DynamicPage = ({ data, pageContext }) => {
         products={pageContext?.products}
         articles={blog?.edges}
       />
-      {blogSlug && <ArticlesComponent articles={blog?.edges} pageContext={{ ...pageContext, localizations }}/>}
+      {blogSlug && (
+        <ArticlesComponent
+          articles={blog?.edges}
+          categ={categ?.nodes}
+          pageContext={{ ...pageContext, localizations }}
+        />
+      )}
       {sneakersSlug && (
         <SneakersPage
           sneakers={pageContext.listSneakers}
@@ -137,6 +144,7 @@ export const query = graphql`
           strapiId
           slug
           title
+          description
           published_at
           category {
             name
@@ -159,6 +167,11 @@ export const query = graphql`
             }
           }
         }
+      }
+    }
+    allStrapiCategory {
+      nodes {
+        name
       }
     }
   }
