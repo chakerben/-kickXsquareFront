@@ -39,19 +39,9 @@ const Navbar = ({ navbar, pageContext }) => {
 
           <div className="flex items-center">
             <ul className="hidden list-none md:flex flex-row gap-4 items-baseline ml-10">
-              {navbar.links.map(navLink => (
+              {navbar.links.map((navLink) => (
                 <li key={navLink.id}>
-                  <CustomLink
-                    link={{
-                      ...navLink,
-                      url: `${localizePath({
-                        ...pageContext,
-                        isPreview: false,
-                        // Remove the '/'
-                        slug: navLink.url.slice(1),
-                      })}`,
-                    }}
-                  >
+                  <CustomLink link={navLink}>
                     <div className="px-2 py-1">{navLink.text}</div>
                   </CustomLink>
                 </li>
@@ -66,9 +56,9 @@ const Navbar = ({ navbar, pageContext }) => {
             {/* Hamburger menu on mobile */}
             <button
               onClick={() => setMobileMenuIsShown(true)}
-              className="p-1 block md:hidden"
+              className="p-1 block md:hidden mt-5 mr-1"
             >
-              <MdMenu className="h-8 w-auto" />
+              <MdMenu className="h-12 w-auto" />
             </button>
 
             {/* CTA button on desktop */}

@@ -68,7 +68,9 @@ const Footer = ({ footer, pageContext, blog, navbar }) => {
         </nav>
         <Divider colorScheme="grey" />
         <div className="py-8 content-center m-auto text-center">
-          <p style={{ color: "white" }}>Find Us on Social</p>
+          <p style={{ color: "white", marginBottom: "5px" }}>
+            Find Us on Social
+          </p>
           <Flex justifyContent="center">
             <a
               href="https://twitter.com/"
@@ -159,7 +161,7 @@ const Footer = ({ footer, pageContext, blog, navbar }) => {
         style={{ backgroundColor: "#0f0f0f" }}
       >
         <div className="container flex items-center">
-          <ul className="list-none md:flex flex-row gap-4 items-baseline ml-10 ">
+          <ul className="list-none flex flex-row gap-4 items-baseline ml-10 ">
             {navbar.links.map((navLink) => (
               <li key={navLink.id}>
                 <CustomLink

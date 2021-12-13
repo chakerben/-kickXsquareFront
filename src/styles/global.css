@@ -248,9 +248,11 @@ nav.navbar li a:hover {
   word-wrap: break-word;
   max-width: none;
 }
-.off_home .pa2 {
-  position: relative;
-  width: auto;
+@media (min-width: 769px) {
+  .off_home .pa2 {
+    position: relative;
+    width: auto;
+  }
 }
 .off_home nav.navbar .searchbox {
   border-radius: 3px;
