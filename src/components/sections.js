@@ -10,6 +10,7 @@ import Pricing from "./sections/pricing"
 import LeadForm from "./sections/lead-form"
 import ProductsList from "./sections/products-list"
 import LatestBlog from "./sections/latest-blog"
+import Feature2 from "./sections/feature2"
 import { useCookies } from "react-cookie"
 import { navigate } from "gatsby-link"
 import { useLocation } from "@reach/router"
@@ -27,6 +28,7 @@ const sectionComponents = {
   "sections.lead-form": LeadForm,
   "sections.products-list": ProductsList,
   "sections.latest-blog": LatestBlog,
+  "sections.feature2": Feature2,
 }
 
 const PreviewModeBanner = ({ location }) => {
@@ -51,7 +53,8 @@ const PreviewModeBanner = ({ location }) => {
 // Display a section individually
 const Section = ({ sectionData, products, articles }) => {
   // Prepare the component
-  const SectionComponent = sectionComponents[sectionData.strapi_component || sectionData.__component]
+  const SectionComponent =
+    sectionComponents[sectionData.strapi_component || sectionData.__component]
 
   if (!SectionComponent) {
     // No matching component for this page section
@@ -59,11 +62,17 @@ const Section = ({ sectionData, products, articles }) => {
   }
 
   // Display the section
-  return <SectionComponent data={sectionData} products= {products} articles= {articles}  />
+  return (
+    <SectionComponent
+      data={sectionData}
+      products={products}
+      articles={articles}
+    />
+  )
 }
 
 // Display the list of sections
-const Sections = ({ sections, products, articles}) => {
+const Sections = ({ sections, products, articles }) => {
   const location = useLocation()
   // Ignore unused destructured variable
   // eslint-disable-next-line
@@ -73,27 +82,26 @@ const Sections = ({ sections, products, articles}) => {
     // The preview cookie is deleted when state.prevPath exists on location
     if (location.state && location.state.prevPath) {
       removeCookie("strapiPreview", {
-        path: '/',
+        path: "/",
         secure: process.env.NODE_ENV === "production",
         sameSite: "Strict",
       })
     }
   }, [location, removeCookie])
 
-  const previewModeIsEnabled = process.env.GATSBY_PREVIEW_SECRET &&
+  const previewModeIsEnabled =
+    process.env.GATSBY_PREVIEW_SECRET &&
     cookies.strapiPreview === process.env.GATSBY_PREVIEW_SECRET
-  
+
   return (
     <div className="flex flex-col">
-      {previewModeIsEnabled && (
-        <PreviewModeBanner location={location} />
-      )}
+      {previewModeIsEnabled && <PreviewModeBanner location={location} />}
       {sections.map((section, i) => (
         <Section
           sectionData={section}
-          key={`${section.strapi_component}${(section.id, i)}`} 
-          products= {products} 
-          articles= {articles}
+          key={`${section.strapi_component}${(section.id, i)}`}
+          products={products}
+          articles={articles}
         />
       ))}
     </div>
