@@ -6,6 +6,7 @@ import FeatureRowsGroup from "@/components/sections/feature-rows-group"
 import BottomActions from "@/components/sections/bottom-actions"
 import TestimonialsGroup from "@/components/sections/testimonials-group"
 import RichText from "./sections/rich-text"
+import HeaderPage from "./sections/headerPage"
 import Pricing from "./sections/pricing"
 import LeadForm from "./sections/lead-form"
 import ProductsList from "./sections/products-list"
@@ -29,6 +30,7 @@ const sectionComponents = {
   "sections.products-list": ProductsList,
   "sections.latest-blog": LatestBlog,
   "sections.feature2": Feature2,
+  "sections.header-page": HeaderPage,
 }
 
 const PreviewModeBanner = ({ location }) => {
